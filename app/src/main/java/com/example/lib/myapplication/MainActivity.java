@@ -89,7 +89,17 @@ public class MainActivity extends AppCompatActivity {
             vv_video = (MyVideoView) findViewById(R.id.videoView);
             vv_video.setMediaController(new MediaController(this));
             vv_video.setVideoPath(file.getAbsolutePath());
-            vv_video.start();
+            try {
+                vv_video.start();
+            }
+            catch(Exception e)
+            {
+                Toast toast = Toast.makeText(getApplicationContext(), videoFileLists.get(0)+"，文件格式系统不支持！", Toast.LENGTH_LONG);
+                toast.setGravity(Gravity.CENTER, 0, 0);
+                toast.show();
+                return;
+            }
+
             vv_video.requestFocus();
             //循环播放
             vv_video.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
@@ -101,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         } else {
-            Toast toast = Toast.makeText(getApplicationContext(), videoFileLists.get(0) + "没找到，请在U盘的" + videoDir + "文件夹中放一个*.mp4文件！", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(getApplicationContext(), videoFileLists.get(0) + "没找到，请在U盘的" + videoDir + "文件夹中放一个*.mp4文件！", Toast.LENGTH_LONG);
             toast.setGravity(Gravity.CENTER, 0, 0);
             toast.show();
         }
