@@ -19,6 +19,11 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+/*
+建议使用的MP4文件格式：
+用Adobe Premiere导出mp4
+H.264->匹配源：高比特率（1440x1080）
+ */
 public class MainActivity extends AppCompatActivity {
     private MyVideoView vv_video;
 
